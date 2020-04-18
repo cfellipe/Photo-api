@@ -1,0 +1,53 @@
+version: '3.7'
+services:
+  mysql-standalone:
+    container_name: mysql-standalone
+    image: mysql:5.6
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=photo
+    ports:
+      - "3306:3306"
+    restart: always
+    networks:
+      - application-network
+
+  backend01:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    container_name: backend01
+    ports:
+      - '8080:8080'
+    networks:
+      - application-network
+    depends_on:
+      - mysql-standalone
+    environment:
+      - DATABASE_HOST=mysql-standalone
+      - DATABASE_USER=root
+      - DATABASE_PASSWORD=root
+      - DATABASE_NAME=photo
+      - DATABASE_PORT=3306
+
+  backend02:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    container_name: backend02
+    ports:
+      - '8080:8081'
+    networks:
+      - application-network
+    depends_on:
+      - mysql-standalone
+    environment:
+      - DATABASE_HOST=mysql-standalone
+      - DATABASE_USER=root
+      - DATABASE_PASSWORD=root
+      - DATABASE_NAME=photo
+      - DATABASE_PORT=3306
+
+networks:
+  application-network:
+    driver: bridge
