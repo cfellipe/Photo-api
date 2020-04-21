@@ -13,7 +13,7 @@ data class User(
         override val createdDate: Date
 ) : BaseEntity(createdDate = createdDate) {
 
-    fun updateField(userDTO: UserDTO){
+    fun updateFields(userDTO: UserDTO){
         this.name = userDTO.name
         this.email = userDTO.email
     }

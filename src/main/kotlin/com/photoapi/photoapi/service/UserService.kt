@@ -15,9 +15,17 @@ data class UserService(val userRepository: UserRepository) {
         return UserDTO.fromUser(savedUser)
     }
 
-    fun updateUser(userDTO: UserDTO, userId: Long){
-        val user = userRepository.findById(userId).orElseThrow { throw AppException(AppError.USER_NOT_FOUND) }
-
+    fun updateUser(userDTO: UserDTO, userId: Long) {
+        val user = findUser(userId)
+        user.updateFields(userDTO)
+        userRepository.save(user)
     }
+
+    fun deleteUser(userId: Long) {
+        val user = findUser(userId)
+        userRepository.delete(user)
+    }
+
+    private fun findUser(userId: Long) = userRepository.findById(userId).orElseThrow { throw AppException(AppError.USER_NOT_FOUND) }
 
 }

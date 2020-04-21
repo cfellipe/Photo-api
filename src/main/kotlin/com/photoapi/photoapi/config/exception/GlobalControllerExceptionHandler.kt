@@ -1,12 +1,9 @@
 package com.photoapi.photoapi.config.exception
 
 import org.springframework.http.ResponseEntity
-import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
 
-
-@Controller
 @ControllerAdvice
 class GlobalControllerExceptionHandler {
 
