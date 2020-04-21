@@ -1,7 +1,7 @@
 package com.photoapi.photoapi.config.exception
 
-class AppException(val error: AppError) : RuntimeException(error.message) {
+class AppException(val appError: AppError) : RuntimeException(appError.message) {
 
-    val status: Int = error.status.value()
-    val code: String = error.code
+    val status: Int = appError.status.value()
+    val code: String = appError.code
 }
