@@ -1,4 +1,4 @@
-package com.photoapi.photoapi.config
+package com.photoapi.photoapi.config.swagger
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -28,7 +28,7 @@ class SwaggerConfig : WebMvcConfigurationSupport() {
     private fun metaData(): ApiInfo {
         return ApiInfoBuilder()
                 .title("Spring Boot REST API")
-                .description("\"Spring Boot REST API for greeting people\"")
+                .description("\"Spring Boot REST API for api photo \"")
                 .version("1.0.0")
                 .license("Apache License Version 2.0")
                 .licenseUrl("https://www.apache.org/licenses/LICENSE-2.0\"")
