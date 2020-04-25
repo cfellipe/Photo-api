@@ -11,10 +11,4 @@ data class User(
         @Column(unique = true)
         var email: String,
         override val createdDate: Date
-) : BaseEntity(createdDate = createdDate) {
-
-    fun updateFields(userDTO: UserDTO){
-        this.name = userDTO.name
-        this.email = userDTO.email
-    }
-}
+) : BaseEntity(createdDate = createdDate)

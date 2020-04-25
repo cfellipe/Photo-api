@@ -9,6 +9,7 @@ import javax.persistence.Table
 @Entity
 @Table(name = "tb_photo")
 data class Photo(
+        override val id: Long,
         @Column(name = "web_path")
         val webPath: String,
         val name: String,
@@ -16,4 +17,4 @@ data class Photo(
         override val createdDate: Date,
         @ManyToOne
         val album: Album? = null
-) : BaseEntity(createdDate = createdDate)
+) : BaseEntity(createdDate = createdDate, id = id)
