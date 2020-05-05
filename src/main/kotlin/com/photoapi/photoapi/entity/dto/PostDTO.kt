@@ -8,7 +8,7 @@ data class PostDTO(
         val description: String,
         val userId: Long
 ) {
-    fun convertToPost(user: User) = Post(description = this.description, createdDate = Date(), user = user)
+    fun convertToPost(user: User) = Post(description = this.description, createdDate = Date(), user = user, id = null)
 
     companion object {
         fun fromPost(post: Post) = PostDTO(description = post.description, userId = post.user.id!!)

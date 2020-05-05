@@ -32,4 +32,10 @@ data class UserController(val userService: UserService) {
         return ResponseEntity.noContent().build()
     }
 
+    @ApiOperation(value = "Find user by id")
+    @GetMapping("/{userId}")
+    fun getUser(@PathVariable userId: Long): ResponseEntity<UserDTO> {
+        return ResponseEntity.status(HttpStatus.OK).body(userService.findUserById(userId))
+    }
+
 }

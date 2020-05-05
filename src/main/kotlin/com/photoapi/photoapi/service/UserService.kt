@@ -5,6 +5,7 @@ import com.photoapi.photoapi.config.exception.AppException
 import com.photoapi.photoapi.entity.User
 import com.photoapi.photoapi.entity.dto.UserDTO
 import com.photoapi.photoapi.entity.repository.UserRepository
+import org.springframework.cache.annotation.Cacheable
 import org.springframework.stereotype.Service
 
 @Service
@@ -27,9 +28,15 @@ data class UserService(val userRepository: UserRepository) {
         userRepository.delete(user)
     }
 
+    @Cacheable(cacheNames = ["user"], key="#userId")
+    fun findUserById(userId: Long): UserDTO {
+        val user = findUser(userId)
+        return UserDTO.fromUser(user)
+    }
+
     fun findUser(userId: Long) = userRepository.findById(userId).orElseThrow { throw AppException(AppError.USER_NOT_FOUND) }
 
-    private fun updateFields(user: User, userDTO: UserDTO){
+    private fun updateFields(user: User, userDTO: UserDTO) {
         user.email = userDTO.email
         user.name = userDTO.name
     }
