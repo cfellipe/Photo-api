@@ -8,9 +8,8 @@ import javax.persistence.Table
 @Entity
 @Table(name = "tb_post")
 data class Post(
-        override val id: Long?,
         var description: String,
         override val createdDate: Date,
         @ManyToOne
         val user: User
-) : BaseEntity(createdDate = createdDate, id = id)
+) : BaseEntity(createdDate = createdDate)

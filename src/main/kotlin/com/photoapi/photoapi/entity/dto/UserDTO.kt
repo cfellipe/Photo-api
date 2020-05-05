@@ -11,7 +11,7 @@ data class UserDTO(
         val name: String,
         val email: String
 ):Serializable {
-    fun convertToUser() = User(name = this.name, email = this.email, createdDate = Date(), id = null)
+    fun convertToUser() = User(name = this.name, email = this.email, createdDate = Date())
 
     companion object {
         fun fromUser(user: User) = UserDTO(user.id, user.name, user.email)
