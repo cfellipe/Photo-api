@@ -1,5 +1,7 @@
 package com.photoapi.photoapi.entity
 
+import java.time.LocalDate
+import java.time.LocalDateTime
 import java.util.*
 import javax.persistence.Column
 import javax.persistence.Entity
@@ -11,9 +13,9 @@ import javax.persistence.Table
 data class Photo(
         @Column(name = "web_path")
         val webPath: String,
-        val name: String,
-        val description: String,
-        override val createdDate: Date,
+        val name: String? = null,
+        val description: String? = null,
         @ManyToOne
-        val album: Album? = null
+        val album: Album? = null,
+        override val createdDate: LocalDateTime
 ) : BaseEntity(createdDate = createdDate)

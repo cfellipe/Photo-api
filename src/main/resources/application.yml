@@ -14,5 +14,13 @@ spring:
   cache:
     type: redis
   redis:
-    host: localhost
-    port: 6379
+    host: ${REDIS_HOST}
+    port: ${REDIS_PORT}
+aws:
+  s3:
+    serverUrl: s3.sa-east-1.amazonaws.com
+    accessKey: your access key
+    secretKey: your secret key
+    bucket: apiphoto-bucket
+    region: sa-east-1
+
