@@ -9,8 +9,7 @@ import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import org.springframework.web.multipart.MultipartFile
-import java.time.LocalDate
-import java.util.*
+import java.time.LocalDateTime
 
 
 @Service
@@ -25,7 +24,7 @@ data class PhotoService(val s3Service: S3Service,
 
     fun savePhoto(multipartFile: MultipartFile): PhotoDTO {
         val webPath = uploadFileToS3(multipartFile)
-        val photo = Photo(webPath = webPath, name = multipartFile.originalFilename, createdDate = LocalDate.now())
+        val photo = Photo(webPath = webPath, name = multipartFile.originalFilename, createdDate = LocalDateTime.now())
         val savedPhoto = photoRepository.save(photo)
         return PhotoDTO.fromPhoto(savedPhoto)
     }

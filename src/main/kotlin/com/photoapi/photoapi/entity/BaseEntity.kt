@@ -6,7 +6,7 @@ import java.util.*
 import javax.persistence.*
 
 @MappedSuperclass
-open abstract class BaseEntity(
+abstract class BaseEntity(
 
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
