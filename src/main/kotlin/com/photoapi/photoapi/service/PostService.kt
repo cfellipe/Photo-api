@@ -5,7 +5,6 @@ import com.photoapi.photoapi.config.exception.AppException
 import com.photoapi.photoapi.entity.Post
 import com.photoapi.photoapi.entity.dto.PostDTO
 import com.photoapi.photoapi.entity.repository.PostRepository
-import com.photoapi.photoapi.entity.repository.UserRepository
 import org.springframework.stereotype.Service
 
 @Service

@@ -1,4 +1,4 @@
-package com.photoapi.photoapi.service
+package com.photoapi.photoapi.config.aws
 
 import com.amazonaws.services.s3.AmazonS3
 import com.amazonaws.services.s3.model.PutObjectRequest

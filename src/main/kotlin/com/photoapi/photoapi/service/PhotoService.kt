@@ -1,5 +1,6 @@
 package com.photoapi.photoapi.service
 
+import com.photoapi.photoapi.config.aws.S3Service
 import com.photoapi.photoapi.config.exception.AppError
 import com.photoapi.photoapi.config.exception.AppException
 import com.photoapi.photoapi.entity.Photo
@@ -38,7 +39,7 @@ data class PhotoService(val s3Service: S3Service,
             return bucketName + "." + serverUrl + "/" + fileName
         } catch (e: Exception) {
             LOGGER.error("there was a erro:", e.printStackTrace())
-            throw AppException(AppError.UPLOAD_BAD_REQUEST)
+            throw AppException(AppError.UPLOAD_FILE_ERROR)
         }
 
     }

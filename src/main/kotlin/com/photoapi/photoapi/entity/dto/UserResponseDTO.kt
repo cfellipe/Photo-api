@@ -7,14 +7,14 @@ import java.time.LocalDateTime
 
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-data class UserDTO(
+data class UserResponseDTO(
         val id: Long? = null,
         val name: String,
         val email: String
-):Serializable {
-    fun convertToUser() = User(name = this.name, email = this.email, createdDate = LocalDateTime.now())
+) : Serializable {
 
     companion object {
-        fun fromUser(user: User) = UserDTO(user.id, user.name, user.email)
+        fun fromUser(user: User) = UserResponseDTO(user.id, user.name, user.email)
     }
+
 }

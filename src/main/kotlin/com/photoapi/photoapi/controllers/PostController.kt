@@ -1,7 +1,6 @@
-package com.photoapi.photoapi.controller
+package com.photoapi.photoapi.controllers
 
 import com.photoapi.photoapi.entity.dto.PostDTO
-import com.photoapi.photoapi.entity.dto.UserDTO
 import com.photoapi.photoapi.service.PostService
 import io.swagger.annotations.ApiOperation
 import org.springframework.http.HttpStatus
