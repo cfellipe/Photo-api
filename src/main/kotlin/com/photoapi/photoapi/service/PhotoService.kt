@@ -38,7 +38,7 @@ data class PhotoService(val s3Service: S3Service,
             file.delete()
             return bucketName + "." + serverUrl + "/" + fileName
         } catch (e: Exception) {
-            LOGGER.error("there was a erro:", e.printStackTrace())
+            LOGGER.error("there was a error:", e.printStackTrace())
             throw AppException(AppError.UPLOAD_FILE_ERROR)
         }
 
