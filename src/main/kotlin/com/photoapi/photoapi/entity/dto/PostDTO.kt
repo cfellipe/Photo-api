@@ -8,12 +8,11 @@ import java.time.LocalDateTime
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 data class PostDTO(
-        val description: String,
-        val userId: Long
+        val description: String
 ) {
     fun convertToPost(user: User) = Post(description = this.description, createdDate = LocalDateTime.now(), user = user)
 
     companion object {
-        fun fromPost(post: Post) = PostDTO(description = post.description, userId = post.user.id!!)
+        fun fromPost(post: Post) = PostDTO(description = post.description)
     }
 }

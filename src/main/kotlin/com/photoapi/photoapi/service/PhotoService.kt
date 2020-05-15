@@ -4,6 +4,7 @@ import com.photoapi.photoapi.config.aws.S3Service
 import com.photoapi.photoapi.config.exception.AppError
 import com.photoapi.photoapi.config.exception.AppException
 import com.photoapi.photoapi.entity.Photo
+import com.photoapi.photoapi.entity.User
 import com.photoapi.photoapi.entity.dto.PhotoDTO
 import com.photoapi.photoapi.entity.repository.PhotoRepository
 import org.slf4j.LoggerFactory
@@ -23,7 +24,7 @@ data class PhotoService(val s3Service: S3Service,
         private val LOGGER = LoggerFactory.getLogger(PhotoService::class.java)
     }
 
-    fun savePhoto(multipartFile: MultipartFile): PhotoDTO {
+    fun savePhoto(multipartFile: MultipartFile, user: User): PhotoDTO {
         val webPath = uploadFileToS3(multipartFile)
         val photo = Photo(webPath = webPath, name = multipartFile.originalFilename, createdDate = LocalDateTime.now())
         val savedPhoto = photoRepository.save(photo)
