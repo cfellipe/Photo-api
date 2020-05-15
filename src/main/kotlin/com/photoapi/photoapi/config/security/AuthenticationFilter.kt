@@ -13,7 +13,7 @@ data class AuthenticationFilter(val tokenService: TokenService, val userReposito
 
     override fun doFilterInternal(request: HttpServletRequest, response: HttpServletResponse, filterChain: FilterChain) {
         val token: String? = getToken(request)
-        if (tokenService.isTokenValido(token)) {
+        if (tokenService.isValidToken(token)) {
             authenticateUser(token!!)
         }
         filterChain.doFilter(request, response)

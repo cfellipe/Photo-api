@@ -22,18 +22,18 @@ data class TokenService(val userRepository: UserRepository,
     override fun loadUserByUsername(userEmail: String) = userRepository.findByEmail(userEmail)
             ?: throw AppException(AppError.USER_NOT_FOUND)
 
-    fun gerarToken(auth: Authentication): String {
-        val logado = auth.getPrincipal() as User
+    fun generateToken(auth: Authentication): String {
+        val user = auth.getPrincipal() as User
         return Jwts.builder()
-                .setIssuer("API Forum")
-                .setSubject(logado.id.toString())
+                .setIssuer("Photo Api")
+                .setSubject(user.id.toString())
                 .setIssuedAt(Date())
                 .setExpiration(Date(Date().getTime() + expiration.toLong()))
                 .signWith(io.jsonwebtoken.SignatureAlgorithm.HS256, secret)
                 .compact()
     }
 
-    fun isTokenValido(token: String?): Boolean {
+    fun isValidToken(token: String?): Boolean {
         return try {
             Jwts.parser().setSigningKey(secret).parseClaimsJws(token)
             true

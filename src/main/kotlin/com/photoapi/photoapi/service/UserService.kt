@@ -57,7 +57,7 @@ data class UserService(val userRepository: UserRepository,
 
         try {
             val auth = authenticationManager.authenticate(loginFields)
-            val token: String = tokenService.gerarToken(auth)
+            val token: String = tokenService.generateToken(auth)
             return TokenDTO(token, "Bearer")
         } catch (e: AuthenticationException) {
             LOGGER.error("there was a error:", e.printStackTrace())
