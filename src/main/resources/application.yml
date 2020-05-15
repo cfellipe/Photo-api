@@ -1,7 +1,10 @@
 spring:
   jpa:
     show-sql: true
-    hibernate.ddl-auto: update
+    hibernate.ddl-auto: none
+
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-master.xml
 aws:
   s3:
     serverUrl: s3.sa-east-1.amazonaws.com
@@ -9,4 +12,5 @@ aws:
     secretKey: your secret key
     bucket: apiphoto-bucket
     region: sa-east-1
+
 

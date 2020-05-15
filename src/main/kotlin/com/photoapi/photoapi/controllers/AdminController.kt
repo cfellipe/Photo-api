@@ -14,7 +14,7 @@ import org.springframework.web.multipart.MultipartFile
 @RequestMapping("/admin")
 data class AdminController(val adminService: AdminService) {
 
-    @ApiOperation(value = "Upload a image")
+    @ApiOperation(value = "Create a profile")
     @PostMapping("/profile")
     fun createProfile(@RequestBody profileDTO: ProfileDTO): ResponseEntity<*> {
         return ResponseEntity.status(HttpStatus.CREATED).body(adminService.createProfile(profileDTO))
