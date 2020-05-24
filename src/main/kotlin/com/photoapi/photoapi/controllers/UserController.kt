@@ -19,8 +19,8 @@ data class UserController(val userService: UserService) {
 
     @ApiOperation(value = "Create new user")
     @PostMapping
-    fun createUser(@RequestBody user: UserRequestDTO): ResponseEntity<UserResponseDTO> {
-        return ResponseEntity.status(HttpStatus.CREATED).body(userService.createUser(user))
+    fun createUser(@RequestBody userRequest: UserRequestDTO): ResponseEntity<UserResponseDTO> {
+        return ResponseEntity.status(HttpStatus.CREATED).body(userService.createUser(userRequest))
     }
 
     @ApiOperation(value = "Update user")

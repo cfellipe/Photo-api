@@ -3,6 +3,7 @@ package com.photoapi.photoapi.service
 import com.photoapi.photoapi.config.exception.AppError
 import com.photoapi.photoapi.config.exception.AppException
 import com.photoapi.photoapi.config.security.TokenService
+import com.photoapi.photoapi.entity.Profile
 import com.photoapi.photoapi.entity.User
 import com.photoapi.photoapi.entity.dto.LoginDTO
 import com.photoapi.photoapi.entity.dto.TokenDTO
@@ -27,15 +28,12 @@ data class UserService(val userRepository: UserRepository,
     fun createUser(userRequest: UserRequestDTO): UserResponseDTO {
 
         val user = userRequest.convertToUser()
+        user.profile = filterProfile(userRequest.profiles)
         val savedUser = userRepository.save(user)
         return UserResponseDTO.fromUser(savedUser)
     }
 
-  /*  fun setProfile(profiles: MutableList<String>): MutableList<Profile> {
-        val userProfiles = adminService.findAllProfiles()
-        val profileSelected = userProfiles.minus(profiles.map { Profile(name = it) }).toMutableList()
-        return profileSelected
-    }*/
+    fun filterProfile(userProfiles: MutableList<String>) = adminService.findAllProfiles().filter { it.name in userProfiles }.toMutableList()
 
 
     fun updateUser(userDTO: UserRequestDTO, user: User) {

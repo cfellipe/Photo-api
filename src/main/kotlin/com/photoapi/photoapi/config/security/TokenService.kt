@@ -15,9 +15,9 @@ import java.util.*
 @Service
 data class TokenService(val userRepository: UserRepository,
                         @Value("\${config.jwt.expiration}")
-                           val expiration: String,
+                        val expiration: String,
                         @Value("\${config.jwt.secret}")
-                           val secret: String) : UserDetailsService {
+                        val secret: String) : UserDetailsService {
 
     override fun loadUserByUsername(userEmail: String) = userRepository.findByEmail(userEmail)
             ?: throw AppException(AppError.USER_NOT_FOUND)
@@ -34,11 +34,11 @@ data class TokenService(val userRepository: UserRepository,
     }
 
     fun isValidToken(token: String?): Boolean {
-        return try {
+        try {
             Jwts.parser().setSigningKey(secret).parseClaimsJws(token)
-            true
+            return true
         } catch (e: Exception) {
-            false
+            return false
         }
     }
 

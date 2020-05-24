@@ -46,8 +46,10 @@ CREATE TABLE `tb_photo` (
   `name` varchar(255) DEFAULT NULL,
   `web_path` varchar(255) DEFAULT NULL,
   `album_id` int DEFAULT NULL,
+  `user_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
-  FOREIGN KEY (album_id) REFERENCES tb_album (id)
+  FOREIGN KEY (album_id) REFERENCES tb_album (id),
+  FOREIGN KEY (user_id) REFERENCES tb_user (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `tb_post` (

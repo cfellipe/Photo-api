@@ -17,5 +17,7 @@ data class Photo(
         val description: String? = null,
         @ManyToOne
         val album: Album? = null,
+        @ManyToOne
+        val user: User,
         override val createdDate: LocalDateTime
 ) : BaseEntity(createdDate = createdDate)

@@ -26,7 +26,7 @@ data class PhotoService(val s3Service: S3Service,
 
     fun savePhoto(multipartFile: MultipartFile, user: User): PhotoDTO {
         val webPath = uploadFileToS3(multipartFile)
-        val photo = Photo(webPath = webPath, name = multipartFile.originalFilename, createdDate = LocalDateTime.now())
+        val photo = Photo(webPath = webPath, name = multipartFile.originalFilename, createdDate = LocalDateTime.now(), user = user)
         val savedPhoto = photoRepository.save(photo)
         return PhotoDTO.fromPhoto(savedPhoto)
     }
