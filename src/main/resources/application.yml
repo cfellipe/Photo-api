@@ -14,7 +14,7 @@ spring:
     driverClassName: org.h2.Driver
 
   liquibase:
-    change-log: classpath:/db/changelog/db.changelog-master.xml
+    enabled: false
 aws:
   s3:
     serverUrl: s3.sa-east-1.amazonaws.com
